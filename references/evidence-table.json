@@ -1,0 +1,84 @@
+{
+  "table_name": "证据/案例表",
+  "role": "承载截图、附件、逐字稿、案例、SOP 等证据层内容，支持教学和验证",
+  "primary_field": "证据ID",
+  "stable_id_strategy": "evi-<hash>",
+  "notes": [
+    "证据表默认不作为决策入口，而是服务于解释、教学、验证和追溯",
+    "可关联多个业务对象或机制"
+  ],
+  "fields": [
+    {
+      "name": "案例标题",
+      "type": "text",
+      "role": "definition",
+      "required": true
+    },
+    {
+      "name": "证据ID",
+      "type": "text",
+      "role": "identity",
+      "required": true,
+      "stable_id": true
+    },
+    {
+      "name": "来源",
+      "type": "text",
+      "role": "definition",
+      "required": false
+    },
+    {
+      "name": "截图/附件",
+      "type": "attachment",
+      "role": "evidence",
+      "multi_value": true,
+      "required": false
+    },
+    {
+      "name": "原始记录",
+      "type": "text",
+      "role": "evidence",
+      "required": false,
+      "description": "可存原文、逐字稿、案例原始描述或外链索引"
+    },
+    {
+      "name": "摘要",
+      "type": "text",
+      "role": "definition",
+      "required": false
+    },
+    {
+      "name": "可借鉴点",
+      "type": "text",
+      "role": "insight",
+      "required": false
+    },
+    {
+      "name": "关联对象",
+      "type": "link",
+      "role": "navigation",
+      "multi_value": true,
+      "required": false,
+      "description": "关联业务主表"
+    },
+    {
+      "name": "关联机制",
+      "type": "link",
+      "role": "navigation",
+      "multi_value": true,
+      "required": false,
+      "description": "关联实现机制表"
+    },
+    {
+      "name": "可见性",
+      "type": "single_select",
+      "role": "status",
+      "required": false,
+      "options": [
+        "内部可见",
+        "受限可见",
+        "公开参考"
+      ]
+    }
+  ]
+}
