@@ -1,0 +1,63 @@
+{
+  "table_name": "阶段/场景表",
+  "role": "作为主表的稳定导航轴，统一阶段口径和仪表盘聚合维度",
+  "primary_field": "阶段ID",
+  "stable_id_strategy": "stage-<hash>",
+  "notes": [
+    "阶段表负责分类和导航，不承载重执行细节",
+    "默认推荐主表和仪表盘都通过该表聚合"
+  ],
+  "fields": [
+    {
+      "name": "阶段名称",
+      "type": "text",
+      "role": "definition",
+      "required": true
+    },
+    {
+      "name": "阶段ID",
+      "type": "text",
+      "role": "identity",
+      "required": true,
+      "stable_id": true
+    },
+    {
+      "name": "阶段目标",
+      "type": "text",
+      "role": "definition",
+      "required": true
+    },
+    {
+      "name": "进入条件",
+      "type": "text",
+      "role": "execution",
+      "required": false
+    },
+    {
+      "name": "完成标准",
+      "type": "text",
+      "role": "execution",
+      "required": false
+    },
+    {
+      "name": "默认关注指标",
+      "type": "text",
+      "role": "dashboard",
+      "required": false
+    },
+    {
+      "name": "默认推荐对象",
+      "type": "link",
+      "role": "navigation",
+      "multi_value": true,
+      "required": false,
+      "description": "关联业务主表"
+    },
+    {
+      "name": "备注",
+      "type": "text",
+      "role": "manual",
+      "required": false
+    }
+  ]
+}
