@@ -1,0 +1,4 @@
+interface:
+  display_name: "Business Structure Designer"
+  short_description: "通过访谈和现有资料设计业务数据结构、飞书多维表、仪表盘与 GitHub 沉淀包。"
+  default_prompt: "Use $business-structure-designer to interview the user about a business, map the core objects and stages, generate reusable bitable templates, and produce a GitHub-ready design bundle."
