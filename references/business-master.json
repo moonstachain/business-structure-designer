@@ -1,0 +1,117 @@
+{
+  "table_name": "业务主表",
+  "role": "复杂业务的唯一决策入口，只承载要被管理、选择、推进的对象",
+  "primary_field": "对象ID",
+  "stable_id_strategy": "biz-<hash>",
+  "notes": [
+    "主表只放决策对象，不放原始全文、附件堆叠或大段实现细节",
+    "负责人属于人工维护字段，默认不自动覆盖",
+    "场景和机制建议通过关联字段接入，而不是写成长文本"
+  ],
+  "fields": [
+    {
+      "name": "对象名称",
+      "type": "text",
+      "role": "definition",
+      "required": true,
+      "recommended_as_primary_text": true,
+      "description": "业务对象的人类可读名称"
+    },
+    {
+      "name": "对象ID",
+      "type": "text",
+      "role": "identity",
+      "required": true,
+      "stable_id": true,
+      "description": "稳定主键，推荐作为真正的主字段"
+    },
+    {
+      "name": "对象摘要",
+      "type": "text",
+      "role": "definition",
+      "required": true,
+      "description": "说明对象解决什么问题，控制在可快速扫描的长度"
+    },
+    {
+      "name": "所属阶段/场景",
+      "type": "link",
+      "role": "navigation",
+      "multi_value": true,
+      "required": true,
+      "description": "关联到阶段/场景表"
+    },
+    {
+      "name": "触发条件",
+      "type": "text",
+      "role": "execution",
+      "required": false,
+      "description": "什么情况下需要进入该对象"
+    },
+    {
+      "name": "预期结果",
+      "type": "text",
+      "role": "execution",
+      "required": false,
+      "description": "执行完成后应产出的状态或结果"
+    },
+    {
+      "name": "当前状态",
+      "type": "single_select",
+      "role": "status",
+      "required": true,
+      "options": [
+        "候选",
+        "已验证",
+        "默认推荐",
+        "停用"
+      ]
+    },
+    {
+      "name": "优先级",
+      "type": "single_select",
+      "role": "status",
+      "required": false,
+      "options": [
+        "P0",
+        "P1",
+        "P2",
+        "P3"
+      ]
+    },
+    {
+      "name": "负责人",
+      "type": "person",
+      "role": "manual",
+      "required": false,
+      "manual_only": true
+    },
+    {
+      "name": "关联机制",
+      "type": "link",
+      "role": "implementation",
+      "multi_value": true,
+      "required": false,
+      "description": "关联实现机制表"
+    },
+    {
+      "name": "关联证据",
+      "type": "link",
+      "role": "evidence",
+      "multi_value": true,
+      "required": false,
+      "description": "关联证据/案例表"
+    },
+    {
+      "name": "备注",
+      "type": "text",
+      "role": "manual",
+      "required": false
+    }
+  ],
+  "dashboard_metrics": [
+    "按阶段统计对象数",
+    "按状态统计对象数",
+    "按负责人统计待处理对象",
+    "按优先级统计对象分布"
+  ]
+}
