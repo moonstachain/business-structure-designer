@@ -1,0 +1,104 @@
+{
+  "table_name": "实现机制表",
+  "role": "承载业务对象背后的实现方式，防止主表混入大量 how-to 细节",
+  "primary_field": "机制ID",
+  "stable_id_strategy": "mech-<hash>",
+  "notes": [
+    "该表适合承载平台能力、自动化机制、脚本模式、权限机制等",
+    "如果一个对象依赖多种机制，推荐通过关联字段连接，而不是在主表中写成长文本"
+  ],
+  "fields": [
+    {
+      "name": "机制名称",
+      "type": "text",
+      "role": "definition",
+      "required": true
+    },
+    {
+      "name": "机制ID",
+      "type": "text",
+      "role": "identity",
+      "required": true,
+      "stable_id": true
+    },
+    {
+      "name": "机制类型",
+      "type": "single_select",
+      "role": "definition",
+      "required": true,
+      "options": [
+        "平台字段",
+        "自动化流程",
+        "权限控制",
+        "脚本/Skill",
+        "仪表盘能力",
+        "外部系统"
+      ]
+    },
+    {
+      "name": "适用对象",
+      "type": "link",
+      "role": "navigation",
+      "multi_value": true,
+      "required": false,
+      "description": "关联业务主表"
+    },
+    {
+      "name": "输入要求",
+      "type": "text",
+      "role": "execution",
+      "required": false
+    },
+    {
+      "name": "输出结果",
+      "type": "text",
+      "role": "execution",
+      "required": false
+    },
+    {
+      "name": "使用限制",
+      "type": "text",
+      "role": "risk",
+      "required": false
+    },
+    {
+      "name": "自动化程度",
+      "type": "single_select",
+      "role": "status",
+      "required": false,
+      "options": [
+        "纯人工",
+        "半自动",
+        "全自动"
+      ]
+    },
+    {
+      "name": "维护成本",
+      "type": "single_select",
+      "role": "status",
+      "required": false,
+      "options": [
+        "低",
+        "中",
+        "高"
+      ]
+    },
+    {
+      "name": "是否可复用",
+      "type": "single_select",
+      "role": "status",
+      "required": false,
+      "options": [
+        "是",
+        "否"
+      ]
+    },
+    {
+      "name": "关联证据",
+      "type": "link",
+      "role": "evidence",
+      "multi_value": true,
+      "required": false
+    }
+  ]
+}
